@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { FiDownload, FiMail } from "react-icons/fi";
 import Link from "next/link";
@@ -30,41 +30,39 @@ const Hero = () => {
     },
   };
 
-  if (loading) {
-    return (
-      <motion.div
-        className="flex items-center justify-center h-screen bg-gray-900"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      >
-        <motion.h1
-          className="text-5xl font-bold text-white"
-          initial={{ scale: 0.5, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        >
-          Halil Toksöz
-        </motion.h1>
-      </motion.div>
-    );
-  }
-
   return (
-    <motion.div
-      className="min-h-screen bg-gray-900 text-white p-8"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      <div className="max-w-7xl mx-auto">
-        <motion.h1
-          className="text-5xl md:text-7xl font-bold mb-6"
-          variants={itemVariants}
+    <AnimatePresence>
+      {loading ? (
+        <motion.div
+          className="flex items-center justify-center h-screen bg-gray-900"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
-          Backend Architecture
-          <span className="text-blue-500"> Reimagined</span>
-        </motion.h1>
+          <motion.h1
+            className="text-5xl font-bold text-white"
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
+            Halil Toksöz
+          </motion.h1>
+        </motion.div>
+      ) : (
+        <motion.div
+          className="min-h-screen bg-gray-900 text-white p-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <div className="max-w-7xl mx-auto">
+            <motion.h1
+              className="text-5xl md:text-7xl font-bold mb-6"
+              variants={itemVariants}
+            >
+              Backend Architecture
+              <span className="text-blue-500"> Reimagined</span>
+            </motion.h1>
 
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-12"
