@@ -1,113 +1,184 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import dynamic from "next/dynamic";
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import {
+  slideInFromLeft,
+  slideInFromRight,
+  slideInFromTop,
+} from "@/utils/animations";
+import TechIcons from "@/components/techIcons";
+import { FiDownload, FiMail } from "react-icons/fi";
+
+const AvatarCanvas = dynamic(() => import("@/components/avatarCanvas"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full flex justify-center items-center">
+      <div className="animate-pulse text-xl text-purple-500">
+        Loading 3D Avatar...
+      </div>
+    </div>
+  ),
+});
+
+const Hero = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateX = useTransform(mouseY, [0, window.innerHeight], [10, -10]);
+  const rotateY = useTransform(mouseX, [0, window.innerWidth], [-10, 10]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="relative w-full min-h-screen overflow-hidden">
+      {/* Futuristic grid background */}
+      {/* <div className="absolute inset-0 grid grid-cols-12 gap-2 transform -skew-y-12 opacity-20">
+        {Array.from({ length: 144 }).map((_, i) => (
+          <div
+            key={i}
+            className="h-20 bg-blue-500 animate-pulse rounded-sm"
+            style={{ animationDelay: `${i * 0.05}s` }}
+          ></div>
+        ))}
+      </div> */}
+
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        className="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full min-h-screen text-white p-8"
+        style={{
+          perspective: "1000px",
+        }}
+      >
+        <motion.div
+          className="lg:w-3/5 space-y-8 backdrop-filter backdrop-blur-lg bg-white bg-opacity-10 p-8 rounded-2xl shadow-xl"
+          style={{
+            rotateX,
+            rotateY,
+          }}
+        >
+          <motion.div variants={slideInFromLeft(0.5)} className="space-y-2">
+            <motion.h1
+              className="text-5xl md:text-7xl font-bold leading-tight"
+              animate={{ opacity: [0, 1], y: [50, 0] }}
+              transition={{ duration: 1, ease: "easeOut" }}
+            >
+              Halil Toksöz
+            </motion.h1>
+            <motion.h2
+              className="text-3xl md:text-5xl font-semibold"
+              animate={{ opacity: [0, 1], y: [30, 0] }}
+              transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+            >
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-gradient">
+                Software Architect
+              </span>{" "}
+              &{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 animate-gradient">
+                Backend Developer
+              </span>
+            </motion.h2>
+          </motion.div>
+
+          <motion.p
+            variants={slideInFromLeft(0.8)}
+            className="text-lg md:text-xl text-gray-300 max-w-2xl"
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+            Crafting robust, scalable architectures and elegant backend
+            solutions. Bringing your complex software visions to life with
+            cutting-edge technologies and best practices.
+          </motion.p>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+          <motion.div variants={slideInFromTop} className="py-4">
+            <TechIcons />
+          </motion.div>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+          <motion.div
+            variants={slideInFromLeft(1)}
+            className="flex flex-wrap gap-4"
+          >
+            <motion.a
+              href="/path-to-your-cv.pdf"
+              download
+              className="group flex items-center gap-2 py-3 px-6 text-lg font-semibold rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FiDownload className="group-hover:animate-bounce" />
+              Download CV
+            </motion.a>
+            <motion.div
+              className="relative group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-full opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+              <Link
+                href="/contact"
+                className="relative flex items-center gap-2 py-3 px-6 text-lg font-semibold rounded-full bg-black text-white transition-all duration-300"
+              >
+                <FiMail className="group-hover:animate-pulse" />
+                Get in Touch
+              </Link>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          variants={slideInFromRight(0.8)}
+          className="lg:w-2/5 h-[50vh] lg:h-[80vh] flex justify-center items-center mt-10 lg:mt-0"
+          style={{
+            perspective: "1000px",
+          }}
         >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+          <motion.div
+            className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl"
+            style={{
+              rotateX,
+              rotateY,
+            }}
+          >
+            <AvatarCanvas />
+            <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black to-transparent"></div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      {/* Interactive particles */}
+      {/* <div className="absolute inset-0 z-20 pointer-events-none">
+        {Array.from({ length: 50 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-white opacity-20"
+            animate={{
+              x: mousePosition.x * 0.05,
+              y: mousePosition.y * 0.05,
+            }}
+            transition={{ type: "spring", stiffness: 50, damping: 10 }}
+            style={{
+              width: `${Math.random() * 10 + 5}px`,
+              height: `${Math.random() * 10 + 5}px`,
+              left: `${Math.random()}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+          ></motion.div>
+        ))}
+      </div> */}
+    </div>
   );
-}
+};
+
+export default Hero;
