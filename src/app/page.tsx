@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { hello } from "@/components/hello";
 import {
   slideInFromLeft,
   slideInFromRight,
