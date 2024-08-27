@@ -43,7 +43,6 @@ const Hero = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY]);
 
-
   useEffect(() => {
     hello();
   }, []);
