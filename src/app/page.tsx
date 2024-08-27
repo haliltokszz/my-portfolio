@@ -29,8 +29,8 @@ const Hero = () => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const rotateX = useTransform(mouseY, [0, window.innerHeight], [10, -10]);
-  const rotateY = useTransform(mouseX, [0, window.innerWidth], [-10, 10]);
+  const rotateX = useTransform(mouseY, [0, typeof window !== "undefined" ? window.innerHeight : 0], [10, -10]);
+  const rotateY = useTransform(mouseX, [0, typeof window !== "undefined" ? window.innerWidth : 0], [-10, 10]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -42,6 +42,10 @@ const Hero = () => {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY]);
+
+  useEffect(() => {
+    hello();
+  }, []);
 
   return (
     <div className="relative w-full min-h-screen overflow-hidden">
