@@ -47,6 +47,10 @@ const Hero = () => {
     hello();
   }, []);
 
+  useEffect(() => {
+    hello();
+  }, []);
+
   return (
     <div className="relative w-full min-h-screen overflow-hidden">
       {/* Futuristic grid background */}
