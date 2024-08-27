@@ -81,7 +81,7 @@ const Hero = () => {
               animate={{ opacity: [0, 1], y: [50, 0] }}
               transition={{ duration: 1, ease: "easeOut" }}
             >
-              Halil Toksöz
+              Backend Developer Portfolio
             </motion.h1>
             <motion.h2
               className="text-3xl md:text-5xl font-semibold"
@@ -89,11 +89,11 @@ const Hero = () => {
               transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
             >
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-gradient">
-                Software Architect
+                High Level System Design
               </span>{" "}
               &{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 animate-gradient">
-                Backend Developer
+                Data Structures & Algorithms
               </span>
             </motion.h2>
           </motion.div>
@@ -102,9 +102,7 @@ const Hero = () => {
             variants={slideInFromLeft(0.8)}
             className="text-lg md:text-xl text-gray-300 max-w-2xl"
           >
-            Crafting robust, scalable architectures and elegant backend
-            solutions. Bringing your complex software visions to life with
-            cutting-edge technologies and best practices.
+            Building scalable systems and optimizing algorithms. Transforming complex problems into efficient solutions with cutting-edge technologies and best practices.
           </motion.p>
 
           <motion.div variants={slideInFromTop} className="py-4">
