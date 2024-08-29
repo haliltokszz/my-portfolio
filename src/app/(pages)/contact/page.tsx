@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useState } from "react";
 
 const AvatarCanvas = dynamic(() => import("@/components/avatarCanvas"), {
   ssr: false,
@@ -25,6 +26,8 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 export default function ContactPage() {
+  const [isBlocked, setIsBlocked] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -35,6 +38,10 @@ export default function ContactPage() {
   });
 
   const onSubmit = async (data: FormData) => {
+    if (isBlocked) {
+      alert("Please wait 30 seconds!");
+    }
+
     try {
       const response = await fetch("/api/send-email", {
         method: "POST",
@@ -48,12 +55,17 @@ export default function ContactPage() {
       if (response.ok) {
         alert("Email sent successfully!");
         reset();
+        setIsBlocked(true);
       } else {
         alert("Failed to send email. Please try again.");
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error("SendMail Error: ", error);
       alert("An error occurred. Please try again later.");
+    } finally {
+      setTimeout(() => {
+        setIsBlocked(false);
+      }, 30000); // 30 saniye bloklama
     }
   };
 
