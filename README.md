@@ -10,9 +10,7 @@ Brief description of what the project does and its purpose.
   - [Features](#features)
   - [Technologies Used](#technologies-used)
   - [Installation](#installation)
-    - [or](#or)
   - [Usage](#usage)
-    - [or](#or-1)
   - [Learn More](#learn-more)
   - [Contributing](#contributing)
   - [License](#license)
@@ -55,30 +53,26 @@ This project uses next/font to automatically optimize and load Inter, a custom G
 - Vercel
 
 ## Installation
-* Clone the repository:
-    * ```bash
+- **Clone the repository:**
+    ```bash
         git clone https://github.com/haliltokszz/my-portfolio.git
     ```
-* Navigate to the project directory:
-    * ```bash
+- **Navigate to the project directory:**
+    ```bash
         cd my-portfolio
     ```
-*Install dependencies:
-    * ```bash
+- **Install dependencies:**
+    ```bash
         npm install
-    ```
-### or
-    * ```bash
+      or
         yarn install
     ```
 
 ## Usage
-Start the development server:
+**Start the development server:**
 ```bash
     npm run dev
-```
-### or
-```bash
+  or
     yarn dev
 ```
 
