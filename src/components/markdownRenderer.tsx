@@ -3,6 +3,14 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
+interface CodeProps {
+  node?: any;
+  inline?: boolean;
+  className?: string;
+  children?: React.ReactNode;
+  [key: string]: any;
+}
+
 const MarkdownRenderer: React.FC<{ content: string }> = ({ content }) => {
   return (
     <ReactMarkdown
@@ -29,7 +37,7 @@ const MarkdownRenderer: React.FC<{ content: string }> = ({ content }) => {
             {...props}
           />
         ),
-        code: ({ node, inline, className, children, ...props }) => {
+        code: ({ node, inline, className, children, ...props }: CodeProps) => {
           const match = /language-(\w+)/.exec(className || "");
           return !inline && match ? (
             <SyntaxHighlighter
