@@ -12,6 +12,30 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  openGraph: {
+    title: "Halil Toksöz - Senior Backend Developer",
+    description:
+      "Senior Backend Developer & Staff Computer Engineer with 6+ years of experience in the industry. Skilled in .NET, Laravel, Nest.js (Node.js), Next.js and Flutter. Passionate about building scalable and efficient systems using best practices, performance optimizations, Design Patterns and Principles, Data Structus and Algorithms. Let's work together to build something amazing!",
+    url: "haliltoksoz.com",
+    siteName: "Halil Toksöz - Senior Backend Developer",
+    locale: "en_US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  classification: "Senior Backend Developer",
+  manifest: "/manifest.json",
   abstract:
     "Senior Backend Developer & Staff Computer Engineer with 6+ years of experience in the industry. Skilled in .NET, Laravel, Nest.js (Node.js), Next.js and Flutter. Passionate about building scalable and efficient systems using best practices, performance optimizations, Design Patterns and Principles, Data Structus and Algorithms. Let's work together to build something amazing!",
   authors: [{ name: "Halil Toksöz", url: "haliltoksoz.com" }],
@@ -73,6 +97,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <meta name="apple-mobile-web-app-title" content="Halil Toksöz" />
+        <link
+          rel="apple-touch-icon"
+          href="/apple-icon.png"
+          type="image/png"
+          sizes="32x32"
+        />
+        <link />
+        <meta name="application-name" content="Halil Toksöz" />
+        <meta name="title" content="Halil Toksöz - Senior Backend Developer" />
+        <link rel="manifest" href="/manifest.webmanifest" />
+      </head>
       <body
         className={
           inter.className +

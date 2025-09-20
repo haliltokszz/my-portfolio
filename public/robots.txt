@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Disallow API routes
+Disallow: /api/
+
+# Disallow private files
+Disallow: /_next/
+Disallow: /favicon.ico
+Disallow: /icon.svg
+Disallow: /apple-icon.png
+Disallow: /manifest.json
+
+# Allow important pages
+Allow: /
+Allow: /about-me
+Allow: /contact
+Allow: /blog
+Allow: /blog/*
+
+# Sitemap location
+Sitemap: https://haliltoksoz.com/sitemap.xml
+
+# Crawl delay (optional - be respectful to search engines)
+Crawl-delay: 1
