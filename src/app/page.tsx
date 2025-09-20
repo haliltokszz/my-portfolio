@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { FiDownload, FiMail, FiArrowRight } from "react-icons/fi";
-import Link from "next/link";
 import TechIcons from "@/components/techIcons";
 
 const useAnimationLoop = (duration: number) => {
@@ -257,7 +256,7 @@ function actionSection(itemVariants: {
       variants={itemVariants}
     >
       <motion.a
-        href="/cv/HalilToksöz-CV-20231108.pdf"
+        href="/cv/HalilToksöz-CV.pdf"
         download
         className="w-full xs:w-auto bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-full inline-flex items-center justify-center transition-all duration-300"
         whileHover={{
