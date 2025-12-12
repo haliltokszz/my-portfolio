@@ -4,7 +4,11 @@ import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import NeuralNetwork from "../objects/NeuralNetwork";
-import { useDevicePerformance, useReducedMotion } from "@/hooks";
+import {
+  useDevicePerformance,
+  useResponsive3D,
+  useReducedMotion,
+} from "@/hooks";
 
 interface HeroSceneProps {
   className?: string;
@@ -12,6 +16,7 @@ interface HeroSceneProps {
 
 export default function HeroScene({ className = "" }: HeroSceneProps) {
   const performance = useDevicePerformance();
+  const responsive = useResponsive3D();
   const reducedMotion = useReducedMotion();
 
   return (
@@ -26,7 +31,11 @@ export default function HeroScene({ className = "" }: HeroSceneProps) {
         style={{ background: "transparent" }}
       >
         {/* Responsive Camera */}
-        <PerspectiveCamera makeDefault position={[0, 0, 6]} fov={50} />
+        <PerspectiveCamera
+          makeDefault
+          position={[0, 0, responsive.cameraDistance]}
+          fov={50}
+        />
 
         {/* Lighting */}
         <ambientLight intensity={0.4} />
@@ -46,7 +55,7 @@ export default function HeroScene({ className = "" }: HeroSceneProps) {
           autoRotate={!reducedMotion}
           autoRotateSpeed={0.3}
           minDistance={4}
-          maxDistance={10}
+          maxDistance={20}
           maxPolarAngle={Math.PI / 1.5}
           minPolarAngle={Math.PI / 4}
         />

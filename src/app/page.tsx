@@ -6,7 +6,7 @@ import { FiDownload, FiMail, FiArrowRight } from "react-icons/fi";
 import TechIcons from "@/components/techIcons";
 import dynamic from "next/dynamic";
 
-// Dynamic import for 3D scene - only on tablet and above
+// Dynamic import for 3D scene with loading state
 const HeroScene = dynamic(() => import("@/components/3d/scenes/HeroScene"), {
   ssr: false,
   loading: () => (
@@ -19,15 +19,6 @@ const HeroScene = dynamic(() => import("@/components/3d/scenes/HeroScene"), {
 export default function Hero() {
   const [showIntro, setShowIntro] = useState(true);
   const [typedText, setTypedText] = useState("");
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Detect mobile
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   // Typing animation
   useEffect(() => {
@@ -156,9 +147,9 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right - 3D Neural Network (hidden on mobile, shown on tablet+) */}
+          {/* Right - 3D Neural Network (Visible on ALL devices) */}
           <motion.div
-            className="lg:col-span-7 h-[50vh] sm:h-[55vh] lg:h-[70vh] order-1 lg:order-2 relative hidden md:block"
+            className="lg:col-span-7 h-[50vh] sm:h-[55vh] lg:h-[70vh] order-1 lg:order-2 relative"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -172,32 +163,10 @@ export default function Hero() {
             </div>
 
             {/* Interaction hint */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs text-gray-500">
-              Drag to rotate • Scroll to zoom
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs text-gray-500 text-center w-full">
+              Use gestures to rotate & zoom
             </div>
           </motion.div>
-
-          {/* Mobile: Show a simple gradient background instead of 3D */}
-          {isMobile && (
-            <motion.div
-              className="md:hidden h-[30vh] relative order-1 rounded-2xl overflow-hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-900/40 via-pink-900/30 to-cyan-900/40 rounded-2xl" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-4xl mb-2">🧠</div>
-                  <p className="text-gray-400 text-xs">
-                    Neural Network Visualization
-                  </p>
-                  <p className="text-gray-500 text-xs">
-                    Available on larger screens
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          )}
         </div>
       </div>
     </motion.div>
