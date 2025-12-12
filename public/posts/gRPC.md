@@ -5,7 +5,7 @@ date: '2023-10-16'
 author: "Halil Toksöz"
 readTime: "5 min read"
 imageUrl: "https://images.unsplash.com/photo-1544077960-604201fe74bc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1651&q=80"
-avatarUrl: "https://media.licdn.com/dms/image/D4D03AQG4jP60k0Y62A/profile-displayphoto-shrink_200_200/0/1694692187681?e=2147483647&v=beta&t=5XFOWym93mWsqvkMy884ThqMuDWVlxLb3JeeGDqQgoM"
+avatarUrl: "https://miro.medium.com/v2/resize:fit:2400/1*wZndSAUOIHqBXB53PR_iRw.jpeg"
 ---
 
 # Mastering gRPC: The Ultimate Guide
