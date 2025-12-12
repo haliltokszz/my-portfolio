@@ -2,7 +2,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import TechIcons from "@/components/techIcons";
-import Link from "next/link";
+import { LinkedQueueTimeline } from "@/components/3d/experience";
+import { ProjectCardStack } from "@/components/3d/projects";
 import {
   SiDotnet,
   SiLaravel,
@@ -28,7 +29,6 @@ import {
   SiPrometheus,
   SiLaravelhorizon,
 } from "react-icons/si";
-import { FiExternalLink, FiGithub } from "react-icons/fi";
 
 const stats = [
   { label: "YEARS OF EXPERIENCE", value: "7" },
@@ -60,27 +60,77 @@ const services = [
   },
 ];
 
+// Experience data formatted for LinkedQueueTimeline
 const experiences = [
   {
-    company: "Eatzy",
-    role: "Senior Software Engineer",
-    period: "11/2025 - Present",
+    id: 1,
+    company: "Amatis",
+    role: "Fullstack Developer",
+    period: "01/2021 – 12/2021",
     achievements: [
-      "Led the development of a new AI & OCR Accounting System using Laravel and Docker.",
-      "Decided to project structure and architecture, system design and database design.",
-      "Developed and managed the entire project on his own.",
+      "Spearheaded end-to-end development of microservices-based, AI-driven healthcare projects.",
+      "Successfully implemented Hangfire for event monitoring and management, handling 84 events.",
+      "Developed user role-specific and subscribable mail and notification services, enhancing engagement by around 25%.",
+      "Led the development of advanced filtering features using Expressions and Reflections.",
     ],
-    technologies: [SiLaravel, SiLaravelhorizon, SiDocker, SiRedis, SiMysql],
+    technologies: [
+      SiDotnet,
+      SiAngular,
+      SiPostgresql,
+      SiDocker,
+      SiRabbitmq,
+      SiD3Dotjs,
+    ],
   },
   {
+    id: 2,
+    company: "Siskon",
+    role: "Mid Backend Developer",
+    period: "01/2022 – 03/2023",
+    achievements: [
+      "Developed a scalable and efficient backend using .NET Core, leveraging Docker and Kubernetes.",
+      "Reduced data collection waiting time from 20 minutes to 1 minute through advanced algorithms.",
+      "Developed an automated data extraction tool for XML output files.",
+      "Mentored two interns and played a role in their technical growth.",
+    ],
+    technologies: [SiDotnet, SiMicrosoftsqlserver, SiMicrosoftazure],
+  },
+  {
+    id: 3,
+    company: "Mallconomy",
+    role: "Mid+ Backend Developer",
+    period: "03/2023 – 07/2023",
+    achievements: [
+      "Achieved increase in user engagement through performance enhancements.",
+      "Led the Docker and Kubernetes infrastructure migration.",
+      "Developed automated system leveraging Google Sheet API for ban operations.",
+      "Integrated Web3 tools on Node.js to retrieve NFT data from Smart Contracts.",
+    ],
+    technologies: [SiDotnet, SiMongodb, SiRedis, SiNodedotjs, SiDocker],
+  },
+  {
+    id: 4,
+    company: "Forwardie",
+    role: "Senior Backend Developer",
+    period: "08/2023 – 02/2025",
+    achievements: [
+      "Contributed to the development and optimization of a large-scale microservices project.",
+      "Played a key role in the architectural and system design phase of all new features.",
+      "Designed the infrastructure for AI automations using OpenAI API.",
+      "Achieved first place in six sprints over three months.",
+    ],
+    technologies: [SiLaravel, SiMysql, SiRedis, SiDotnet, SiNestjs, SiDocker],
+  },
+  {
+    id: 5,
     company: "SSTTEK",
     role: "Senior Backend Developer",
     period: "02/2025 – 09/2025",
     achievements: [
-      "In collaboration with the Software Architect, led the architectural refactoring of the WMS/TMS microservices project (DDD, Clean Architecture, and MediatR & CQRS Pattern) by proposing improvements, then planning and implementing the changes independently.",
-      "Implemented cargo service integrations (Yurtiçi Kargo, Kolay Gelsin and Aras Kargo) using Adapter, Strategy, and Factory Design Patterns to enhance maintainability, reusability, and extensibility.",
-      "Assumed leadership of the development team during the team leader’s leave, overseeing Stage and Production releases to ensure project continuity.",
-      "Participated in technical interviews for Senior Backend Developer candidates alongside the Software Architect, contributing to the recruitment process.",
+      "Led the architectural refactoring of the WMS/TMS microservices project (DDD, Clean Architecture, MediatR & CQRS).",
+      "Implemented cargo service integrations using Adapter, Strategy, and Factory Design Patterns.",
+      "Assumed leadership of the development team during the team leader's leave.",
+      "Participated in technical interviews for Senior Backend Developer candidates.",
     ],
     technologies: [
       SiDotnet,
@@ -95,78 +145,28 @@ const experiences = [
     ],
   },
   {
-    company: "Forwardie",
-    role: "Senior Backend Developer",
-    period: "08/2023 – 02/2025",
+    id: 6,
+    company: "Eatzy",
+    role: "Senior Software Engineer",
+    period: "11/2025 – Present",
     achievements: [
-      "Contributed to the development and optimization of a large-scale microservices project using PHP 7.4 and Laravel 8.",
-      "Played a key role in the architectural and system design phase of all new features.",
-      "Designed the infrastructure and architecture for AI automations to be developed using OpenAI API (Assistant and Chat Completions).",
-      "Created a Event-Driven Architecture using Laravel Events and Pusher for real-time notifications.",
-      "Advocated for the adoption of gRPC as the preferred communication protocol between microservices.",
-      "Delivered outstanding performance in sprint cycles, achieving first place in six sprints over three months and significantly exceeding story point targets (e.g., 105 story points in one week vs. an expected 25).",
+      "Led the development of a new AI & OCR Accounting System using Laravel and Docker.",
+      "Decided project structure and architecture, system design and database design.",
+      "Developed and managed the entire project independently.",
     ],
-    technologies: [SiLaravel, SiMysql, SiRedis, SiDotnet, SiNestjs, SiDocker],
-  },
-  {
-    company: "Mallconomy",
-    role: "Mid+ Backend Developer",
-    period: "03/2023 – 07/2023",
-    achievements: [
-      "Achieved a increase in user engagement through performance enhancements.",
-      "Led the Docker and Kubernetes infrastructure migration.",
-      "Developed an automated system leveraging Google Sheet API for ban operations and reduced manual work by 80%.",
-      "Successfully integrated Web3 tools on Node.js to retrieve NFT data from Smart Contracts.",
-    ],
-    technologies: [SiDotnet, SiMongodb, SiRedis, SiNodedotjs, SiDocker],
-  },
-  {
-    company: "Siskon Automation & Software",
-    role: "Mid Backend Developer",
-    period: "01/2022 – 03/2023",
-    achievements: [
-      "Developed a scalable and efficient backend using .NET Core, leveraging the power of Docker and Kubernetes.",
-      "Implemented advanced algorithms and asynchronous programming, reducing data collection waiting time from 20 minutes to 1 minute and improving overall application performance.",
-      "Developed an automated data extraction tool for XML output files generated by machines every minute, reducing manual operation process time and reusability",
-      "Improved code maintainability and scalability with optimized T-SQL queries.",
-      "Mentored two interns and played a role in their technical growth.",
-      "Contributed to team decision-making, playing a key role in delivering high-quality software solutions.",
-    ],
-    technologies: [SiDotnet, SiMicrosoftsqlserver, SiMicrosoftazure],
-  },
-  {
-    company: "Amatis",
-    role: "Fullstack Developer",
-    period: "01/2021 – 12/2021",
-    achievements: [
-      "Spearheaded end-to-end development of microservices-based, AI-driven healthcare projects.",
-      "Successfully implemented Hangfire for event monitoring and management, handling 84 events, and improving overall system reliability and efficiency.",
-      "Developed user role-specific and subscribable mail and notification services, enhancing the user experience and increasing engagement by around 25%.",
-      "Led the development of advanced filtering features for navigation properties using Expressions and Reflections, resulting in a 40% reduction in user search time and improved data accessibility.",
-      "Prototyped and delivered a new product within two days, showcasing strong design and development skills and meeting strict deadlines.",
-      "Designed and developed the infrastructure for use in future projects by Clean Architecture approach, CQRS pattern, AOP, and OOP principles.",
-    ],
-    technologies: [
-      SiDotnet,
-      SiAngular,
-      SiPostgresql,
-      SiDocker,
-      SiRabbitmq,
-      SiD3Dotjs,
-    ],
+    technologies: [SiLaravel, SiLaravelhorizon, SiDocker, SiRedis, SiMysql],
   },
 ];
 
+// Projects data formatted for ProjectCardStack
 const projects = [
   {
-    name: "ChronoPlan - AI Habit Tracker & Daily Routine Planner",
+    id: 1,
+    name: "ChronoPlan - AI Habit Tracker",
     description:
-      "AI-driven personalization (LLM) to analyze user behaviors and chronotypes, delivering tailored recommendations for task prioritization, habit tracking, and time-blocking",
+      "AI-driven personalization for habit tracking and time-blocking",
     longDescription:
-      "Developed ChronoPlan AI with .NET 8 & .NET Aspire and Flutter, a mobile application providing personalized time management and habit-building guidance for users with ADHD traits." +
-      "Implemented AI-driven personalization (LLM) to analyze user behaviors and chronotypes, delivering tailored recommendations for task prioritization, habit tracking, and time-blocking." +
-      "Integrated neurologically supported methodologies and evidence-based strategies to guide habit formation and productivity." +
-      "Designed a user-friendly Flutter interface with Riverpod state management for high engagement.",
+      "Developed ChronoPlan AI with .NET 8 & .NET Aspire and Flutter, providing personalized time management and habit-building guidance for users with ADHD traits. Integrated AI-driven personalization (LLM) to analyze user behaviors.",
     image: "/images/chronoplan.jpg",
     liveLink: "https://chronoplanapp.com/",
     sourceCode: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
@@ -182,29 +182,20 @@ const projects = [
       SiRedis,
     ],
     designPatterns: [
-      "OOP",
-      "SOLID",
-      "Clean Code",
+      "Clean Architecture",
       "CQRS",
-      "AOP",
+      "Event-Driven",
       "Repository Pattern",
       "Factory Pattern",
-      "Adapter Pattern",
-      "Strategy Pattern",
-      "Template Method Pattern",
-      "Event-Driven Architecture",
-      "Clean Architecture",
     ],
-    icon: <SiDotnet />,
-    color: "from-green-600 to-green-400",
+    complexity: 5,
   },
   {
-    name: "Financial OCR",
-    description:
-      "AI-powered OCR for financial documents for easy data extraction.",
+    id: 2,
+    name: "Accounting OCR",
+    description: "AI-powered OCR for financial documents",
     longDescription:
-      "A financial OCR application that extracts data from invoices, receipts, and other financial documents using Google Document AI and OpenAI API." +
-      "The backend is built with .NET 8 and the frontend with Next.js 14 and Tailwind CSS. The application is deployed on Azure Cloud with Docker by utilizing .NET Aspire.",
+      "An Accounting OCR application that extracts data from invoices, receipts, and other financial documents using Google Document AI and OpenAI API. Built with .NET 8 and Next.js 14.",
     image: "/images/FinancialOCR.gif",
     liveLink: "https://github.com/ScannyBear/FinancialOCR-Client",
     sourceCode: "https://github.com/ScannyBear/FinancialOCR-Backend",
@@ -213,35 +204,24 @@ const projects = [
       SiNextdotjs,
       SiTailwindcss,
       SiMicrosoftazure,
-      SiMicrosoftsqlserver,
       SiDocker,
       SiSwagger,
-      SiElasticsearch,
-      SiRedis,
     ],
     designPatterns: [
-      "OOP",
-      "SOLID",
-      "Clean Code",
-      "CQRS",
-      "AOP",
-      "Repository Pattern",
-      "Factory Pattern",
-      "Adapter Pattern",
-      "Strategy Pattern",
-      "Template Method Pattern",
-      "Event-Driven Architecture",
       "Clean Architecture",
+      "CQRS",
+      "Repository Pattern",
+      "Adapter Pattern",
     ],
-    icon: <SiDotnet />,
-    color: "from-green-600 to-green-400",
+    complexity: 5,
   },
   {
+    id: 3,
     name: "Clean Architecture Project",
     description:
-      "Robust infrastructure using Clean Architecture, CQRS, and more.",
+      "Robust infrastructure using Clean Architecture, CQRS, and more",
     longDescription:
-      "A project utilizing the Clean Architecture approach with .NET Core 6. Technologies include Automapper, MediatR, FluentValidation, Entity Framework Core, Swagger, Redis, Elasticsearch, Docker, and more.",
+      "A project utilizing the Clean Architecture approach with .NET Core 6. Technologies include Automapper, MediatR, FluentValidation, Entity Framework Core, and more.",
     image:
       "https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg",
     liveLink: "https://github.com/haliltokszz/Kodlama.io.Devs",
@@ -255,45 +235,32 @@ const projects = [
       SiSwagger,
     ],
     designPatterns: [
-      "OOP",
-      "SOLID",
-      "Clean Code",
+      "Clean Architecture",
       "CQRS",
-      "AOP",
       "Repository Pattern",
       "Factory Pattern",
     ],
-    icon: <SiDotnet />,
-    color: "from-blue-600 to-blue-400",
+    complexity: 4,
   },
   {
+    id: 4,
     name: "Rent a Car",
-    description: "End-to-end car rental web application.",
+    description: "End-to-end car rental web application",
     longDescription:
-      "Developed with .NET Core and Angular 12, implementing Cross-Cutting Concerns with AOP principles. The project includes a layered architecture, JWT authentication, and Swagger documentation. ",
+      "Developed with .NET Core and Angular 12, implementing Cross-Cutting Concerns with AOP principles. The project includes layered architecture and JWT authentication.",
     image: "https://gh-card.dev/repos/haliltokszz/RentaCar-Frontend.svg",
     liveLink: "https://github.com/haliltokszz/RentaCar",
     sourceCode: "https://github.com/haliltokszz/RentaCar",
     techStack: [SiDotnet, SiAngular, SiSwagger, SiPostgresql],
-    designPatterns: [
-      "OOP",
-      "SOLID",
-      "Clean Code",
-      "CQRS",
-      "AOP",
-      "Repository Pattern",
-      "Factory Pattern",
-      "Adapter Pattern",
-    ],
-    icon: <SiDotnet />,
-    color: "from-yellow-600 to-yellow-400",
+    designPatterns: ["AOP", "Repository Pattern", "Factory Pattern"],
+    complexity: 3,
   },
   {
+    id: 5,
     name: "HR Management System",
-    description:
-      "Desktop application for HR management using advanced data structures.",
+    description: "Desktop application using advanced data structures",
     longDescription:
-      "A desktop application built with C# for HR management, utilizing data structures like Binary Trees and Graphs.",
+      "A desktop application built with C# for HR management, utilizing data structures like Binary Trees and Graphs for efficient data handling.",
     image:
       "https://res.cloudinary.com/practicaldev/image/fetch/s--KW1vPrlM--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/b0ib4migxql3ugwzfqoa.png",
     liveLink:
@@ -302,14 +269,13 @@ const projects = [
       "https://github.com/haliltokszz/VeriYapilariProje-InsanKaynaklariBilgiSistemi",
     techStack: [SiDotnet],
     designPatterns: ["Data Structures", "Algorithms"],
-    icon: <SiDotnet />,
-    color: "from-red-600 to-red-400",
+    complexity: 2,
   },
 ];
 
 export default function AboutMe() {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center p-8 my-6 relative">
+    <div className="min-h-screen flex flex-col justify-center items-center p-4 sm:p-8 my-6 relative">
       {/* Background layer */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black opacity-25 z-0"></div>
 
@@ -322,21 +288,21 @@ export default function AboutMe() {
         {/* Hero Section */}
         <div className="flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0">
           <div className="lg:w-1/2 flex flex-col space-y-6">
-            <h1 className="text-4xl lg:text-6xl font-bold text-white">
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white">
               Crafting <span className="text-blue-500">robust</span> backend
               solutions.
             </h1>
-            <p className="text-gray-300 text-lg">
+            <p className="text-gray-300 text-base sm:text-lg">
               With 7 years of experience in backend development, I specialize in
               creating scalable, efficient, and secure server-side applications.
             </p>
             <div className="grid grid-cols-2 gap-4 mt-8">
               {stats.map((stat) => (
                 <div key={stat.label} className="flex flex-col items-center">
-                  <p className="text-3xl lg:text-4xl font-bold text-blue-500">
+                  <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-500">
                     {stat.value}
                   </p>
-                  <p className="text-sm lg:text-base text-gray-400">
+                  <p className="text-xs sm:text-sm lg:text-base text-gray-400 text-center">
                     {stat.label}
                   </p>
                 </div>
@@ -349,7 +315,7 @@ export default function AboutMe() {
               alt="Profile Image"
               width={500}
               height={500}
-              className="rounded-lg shadow-lg"
+              className="rounded-lg shadow-lg max-w-[300px] sm:max-w-[400px] lg:max-w-[500px]"
             />
           </div>
         </div>
@@ -360,20 +326,22 @@ export default function AboutMe() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <h2 className="text-3xl font-bold mb-8 text-white">Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-white">
+            Services
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {services.map((service, index) => (
               <div
-                key={index}
-                className="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 group"
+                key={`service-${service.title}`}
+                className="bg-gradient-to-br from-gray-800 to-gray-900 p-4 sm:p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 group"
               >
-                <div className="text-4xl mb-4 text-blue-500 group-hover:text-purple-500 transition-colors duration-300">
+                <div className="text-3xl sm:text-4xl mb-4 text-blue-500 group-hover:text-purple-500 transition-colors duration-300">
                   {service.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-white">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 text-white">
                   {service.title}
                 </h3>
-                <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                <p className="text-sm sm:text-base text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
                   {service.description}
                 </p>
               </div>
@@ -381,141 +349,34 @@ export default function AboutMe() {
           </div>
         </motion.div>
 
-        {/* Experience Section */}
+        {/* Experience Section - Linked Queue Timeline */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <h2 className="text-3xl font-bold mb-8 text-white">Experience</h2>
-          <div className="space-y-12">
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                className="bg-gray-800 p-6 rounded-lg shadow-lg"
-                initial={{ x: index % 2 === 0 ? -50 : 50, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <div className="flex flex-col md:flex-row justify-between items-start mb-4">
-                  <div>
-                    <h3 className="text-2xl font-semibold text-white">
-                      {exp.role}
-                    </h3>
-                    <p className="text-blue-500 text-lg">{exp.company}</p>
-                  </div>
-                  <p className="text-gray-400 mt-2 md:mt-0">{exp.period}</p>
-                </div>
-                <ul className="list-disc list-inside text-gray-300 mb-4 space-y-2">
-                  {exp.achievements.map((achievement, i) => (
-                    <motion.li
-                      key={i}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.2 + i * 0.1 }}
-                    >
-                      {achievement}
-                    </motion.li>
-                  ))}
-                </ul>
-                <div className="flex flex-wrap gap-3">
-                  {exp.technologies.map((Tech, i) => (
-                    <Tech
-                      key={i}
-                      className="text-2xl text-gray-400 hover:text-blue-500 transition-colors duration-300"
-                    />
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <LinkedQueueTimeline experiences={experiences} />
         </motion.div>
 
-        {/* Skills Section remains the same */}
+        {/* Skills Section */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          <h2 className="text-3xl font-bold mb-8 text-white">Skills</h2>
-          <TechIcons size={50} />
+          <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-white">
+            Skills
+          </h2>
+          <TechIcons size={40} />
         </motion.div>
 
-        {/* Projects Section */}
+        {/* Projects Section - Separate BST + Card Stack */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.8 }}
         >
-          <h2 className="text-3xl font-bold mb-8 text-white">
-            Featured Projects
-          </h2>
-          <div className="space-y-12">
-            {projects.map((project, index) => (
-              <motion.div
-                key={index}
-                className={`bg-gradient-to-br ${project.color} p-6 rounded-lg shadow-lg overflow-hidden relative`}
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <div className="flex flex-col lg:flex-row gap-8">
-                  <div className="lg:w-1/3">
-                    <Image
-                      src={project.image}
-                      alt={project.name}
-                      width={400}
-                      height={300}
-                      className="rounded-lg shadow-md"
-                    />
-                  </div>
-                  <div className="lg:w-2/3">
-                    <h3 className="text-2xl font-semibold mb-2 text-white flex items-center gap-2">
-                      {project.icon}
-                      {project.name}
-                    </h3>
-                    <p className="text-gray-200 mb-4">
-                      {project.longDescription}
-                    </p>
-                    <div className="mb-4">
-                      <h4 className="text-lg font-semibold text-white mb-2">
-                        Tech Stack:
-                      </h4>
-                      <div className="flex flex-wrap gap-3">
-                        {project.techStack.map((Tech, i) => (
-                          <Tech key={i} className="text-2xl text-white" />
-                        ))}
-                      </div>
-                    </div>
-                    <div className="mb-4">
-                      <h4 className="text-lg font-semibold text-white mb-2">
-                        Design Patterns & Principles:
-                      </h4>
-                      <ul className="list-disc list-inside text-gray-200">
-                        {project.designPatterns.map((pattern, i) => (
-                          <li key={i}>{pattern}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="flex gap-4">
-                      <Link
-                        href={project.liveLink}
-                        className="flex items-center gap-2 text-white hover:text-blue-300 transition-colors duration-300"
-                      >
-                        <FiExternalLink /> Live Demo
-                      </Link>
-                      <Link
-                        href={project.sourceCode}
-                        className="flex items-center gap-2 text-white hover:text-blue-300 transition-colors duration-300"
-                      >
-                        <FiGithub /> Source Code
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <ProjectCardStack projects={projects} />
         </motion.div>
       </motion.section>
     </div>
